@@ -23,7 +23,6 @@ class City:
 
         return cities
 
-
 app = Flask(__name__)
 
 @app.route('/')
