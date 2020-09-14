@@ -1,5 +1,5 @@
 import requests
-from flask import Flask
+from flask import Flask, render_template
 
 class City:
     
@@ -27,9 +27,10 @@ class City:
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
+def root():
     c = City("orlando")
-    return str(c.cityList())
+    c = str(c.cityList())
+    return render_template('index.html', data=c)
 
 if __name__ == '__main__':
    app.run()
