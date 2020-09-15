@@ -1,0 +1,17 @@
+<!doctype html>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+<title>City List</title>
+
+<body>
+    <div class="cities">
+        <h1 class="uk-heading-medium">Cities</h1>
+        <ul class="uk-list uk-list-circle">
+            {% for cities in data %}
+                <li>{{cities}}</li>
+            {% endfor %} 
+        </ul>
+    </div>
+</body>

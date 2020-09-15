@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request, url_for
 
 class City:
     
@@ -25,11 +25,15 @@ class City:
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def root():
-    c = City("orlando")
-    c = str(c.cityList())
-    return render_template('index.html', data=c)
+    if request.method == 'POST':
+        city = request.form['userEmail']
+        newCity = City(str(city))
+        newCity = newCity.cityList()
+        return render_template('city.html', data=newCity)
+    else:
+        return render_template('index.html')
 
 if __name__ == '__main__':
    app.run()
