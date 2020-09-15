@@ -7,9 +7,15 @@
 
 <body>
     <div class="cities">
-        <h1 class="uk-heading-medium">Cities</h1>
+        <h1 class="uk-heading-small">City Information</h1>
         <ul class="uk-list uk-list-circle">
-            {% for cities in data %}
+            {% for cities in data[0] %}
+                <li>{{cities}}</li>
+            {% endfor %} 
+        </ul>
+        <h1 class="uk-heading-small">Complete List of Cities</h1>
+        <ul class="uk-list uk-list-circle">
+            {% for cities in data[1] %}
                 <li>{{cities}}</li>
             {% endfor %} 
         </ul>
