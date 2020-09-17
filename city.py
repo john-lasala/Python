@@ -1,5 +1,5 @@
-import requests
-from flask import Flask, redirect, render_template, request, url_for
+import requests, os
+from flask import Flask, redirect, session, render_template, request, url_for
 
 class City:
     
@@ -55,10 +55,17 @@ def root():
     if request.method == 'POST':
         city = request.form['information']
         newCity = City(str(city))
-        data = newCity.bundle()
-        return render_template('city.html', data=data)
+        session['data'] = newCity.bundle()
+        return redirect(url_for('cities'))
     else:
         return render_template('index.html')
 
+@app.route("/city")
+def cities():
+    data = session.get('data', None)
+    return render_template('city.html', data=data)
+
+app.secret_key = os.urandom(24)
+
 if __name__ == '__main__':
-    app.run()
+    app.run(processes=1, debug=True)
