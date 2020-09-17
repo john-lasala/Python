@@ -24,7 +24,7 @@ class City:
         if len(cities) == 0:
             return "Error, no cities found"
             
-        return cities
+        return cities[1:]
     
     def details(self):
         res = self._json['_embedded']['city:search-results']
@@ -32,6 +32,7 @@ class City:
         if len(res) == 0:
             return
 
+        name = res[0]['matching_full_name']
         res = res[0]['_links']['city:item']['href']
         response = (requests.get(res)).json()
 
@@ -41,7 +42,7 @@ class City:
         timeZone = 'Time Zone: ' + response['_links']['city:timezone']['name'] + ' time'
         coordinates = 'Coordinates: ' + str((coord['latitude'], coord['longitude']))
 
-        return [population, country, timeZone, coordinates]
+        return [name, population, country, timeZone, coordinates]
 
     def bundle(self):
         data = [self.details(), self.cityList()]

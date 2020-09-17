@@ -7,17 +7,27 @@
 
 <body>
     <div class="cities">
-        <h1 class="uk-heading-small">City Information</h1>
-        <ul class="uk-list uk-list-circle">
-            {% for cities in data[0] %}
-                <li>{{cities}}</li>
-            {% endfor %} 
-        </ul>
-        <h1 class="uk-heading-small">Complete List of Cities</h1>
-        <ul class="uk-list uk-list-circle">
-            {% for cities in data[1] %}
-                <li>{{cities}}</li>
-            {% endfor %} 
-        </ul>
+        <a href="/">
+            <button class="uk-button uk-button-text">
+                <i uk-icon="icon: arrow-left; ratio: 1.4"></i>
+                Back
+            </button>
+        </a>
+        <section class="cityInfo">
+            <h1 class="uk-heading-small">City Information</h1>
+            <ul class="uk-list uk-list-circle">
+                {% for cities in data[0] %}
+                    <li>{{cities}}</li>
+                {% endfor %} 
+            </ul>
+        </section>
+        <section class="otherCities">
+            <h1 class="uk-heading-small">Other Possible Cities</h1>
+            <ul class="uk-list uk-list-circle">
+                {% for cities in data[1] %}
+                    <li>{{cities}}</li>
+                {% endfor %} 
+            </ul>
+        </section>
     </div>
 </body>
