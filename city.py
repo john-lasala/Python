@@ -23,7 +23,7 @@ class City:
 
         data = data[0]['_links']['city:item']['href']
         return data
-        
+
     # return a list of possible cities
     def cityList(self):
         res = self._json['_embedded']['city:search-results']
@@ -86,7 +86,6 @@ def cities():
     return render_template('city.html', data=data)
 
 app.secret_key = os.urandom(24)
-c = City("Seattle")
-c.ratings()
-# if __name__ == '__main__':
-#     app.run(processes=1, debug=True)
+
+if __name__ == '__main__':
+    app.run(processes=1, debug=True)
