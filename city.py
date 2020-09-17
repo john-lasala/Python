@@ -13,6 +13,17 @@ class City:
     def get(self):
         return self._json
     
+    # gets geotagID
+    def id(self):
+        data = self.get()
+        data = data['_embedded']['city:search-results']
+
+        if len(data) == 0:
+            return
+
+        data = data[0]['_links']['city:item']['href']
+        return data
+        
     # return a list of possible cities
     def cityList(self):
         res = self._json['_embedded']['city:search-results']
@@ -44,6 +55,15 @@ class City:
 
         return [name, population, country, timeZone, coordinates]
 
+    def ratings(self):
+        data = self.id()
+        data = requests.get(data)
+        data = data.json()['_links']['city:urban_area']['href']
+
+        req = requests.get(data).json()
+        # categories = req['categories']
+        print(data)
+
     def bundle(self):
         data = [self.details(), self.cityList()]
         return data
@@ -66,6 +86,7 @@ def cities():
     return render_template('city.html', data=data)
 
 app.secret_key = os.urandom(24)
-
-if __name__ == '__main__':
-    app.run(processes=1, debug=True)
+c = City("Seattle")
+c.ratings()
+# if __name__ == '__main__':
+#     app.run(processes=1, debug=True)
