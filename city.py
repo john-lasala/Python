@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template, request, url_for
 
 class City:
     
-    # initailize class and get json with city info
+    # initialize class and get json with city info
     def __init__(self, name):
         self.name = str(name).lower()
         self.response = requests.get(f'https://api.teleport.org/api/cities/?search={self.name}')
@@ -23,7 +23,7 @@ class City:
 
         if len(cities) == 0:
             return "Error, no cities found"
-            
+        
         return cities[1:]
     
     def details(self):
